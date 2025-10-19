@@ -4,162 +4,232 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Contact-X Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ... (Same CSS as before; omitted for brevity) ... */
-     body {
+    body {
       min-height: 100vh;
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80') center center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      overflow: hidden;
     }
-
-    .login-container {
-      background: rgba(255,255,255,0.90);
-      border-radius: 24px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-      padding: 40px 36px;
-      max-width: 350px;
+    .background-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(120deg,rgba(255,255,255,0.20) 0%,rgba(150,205,255,0.16) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .login-glass {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(120deg,rgba(255,255,255,0.25) 0%,rgba(230,245,255,0.16) 100%);
+      border-radius: 30px;
+      box-shadow: 0 16px 64px 0 rgba(30, 90, 170, 0.16), 0 4px 24px 0 rgba(0,0,0,0.08);
+      padding: 48px 38px 40px 38px;
+      max-width: 400px;
       width: 100%;
       text-align: center;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(18px) saturate(160%);
+      border: 1.5px solid rgba(255,255,255,0.32);
+      /* Soft glass border */
     }
     .logo {
-      width: 40px;
-      margin-bottom: 16px;
+      width: 54px;
+      margin-bottom: 18px;
+      filter: drop-shadow(0 2px 8px rgba(100,180,255,0.10));
     }
     .login-title {
-      font-size: 1.4rem;
-      font-weight: 600;
-      margin-bottom: 8px;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: #1a2338;
+      margin-bottom: 9px;
+      background: linear-gradient(90deg,#1a8cff 0%,#0048f8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .login-desc {
-      font-size: 1rem;
-      color: #666;
-      margin-bottom: 24px;
+      font-size: 1.08rem;
+      color: #304c7b;
+      opacity: 0.77;
+      margin-bottom: 32px;
+      font-weight: 500;
+    }
+    .login-form {
+      margin-bottom: 10px;
+      margin-top: 6px;
     }
     .login-form input {
       width: 100%;
-      padding: 10px 12px;
-      margin-bottom: 14px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 1rem;
+      padding: 12px 15px;
+      margin-bottom: 18px;
+      border: none;
+      border-radius: 11px;
+      background: rgba(255,255,255,0.63);
+      box-shadow: 0 2px 8px rgba(120,180,255,0.08);
+      font-size: 1.06rem;
+      font-weight: 500;
+      color: #1a2338;
+      outline: none;
+      transition: box-shadow 0.18s, background 0.18s;
     }
     .login-form input:focus {
-      border-color: #1a73e8;
-      outline: none;
+      background: rgba(255,255,255,0.89);
+      box-shadow: 0 2px 12px rgba(80,160,255,0.15);
     }
     .login-form .forgot {
       display: block;
-      font-size: 0.95rem;
+      font-size: 0.98rem;
       margin-bottom: 12px;
-      color: #1a73e8;
+      color: #1a8cff;
       text-align: right;
       text-decoration: none;
+      transition: color 0.18s;
+    }
+    .login-form .forgot:hover {
+      color: #0048f8;
     }
     .login-form button {
       width: 100%;
-      padding: 10px 0;
+      padding: 12px 0;
       border: none;
-      border-radius: 6px;
-      background: #222;
+      border-radius: 13px;
+      background: linear-gradient(90deg,#1a8cff 0%,#0048f8 100%);
       color: #fff;
-      font-weight: 600;
-      font-size: 1.05rem;
+      font-weight: 700;
+      font-size: 1.1rem;
       cursor: pointer;
-      margin-bottom: 14px;
-      transition: background 0.2s;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 24px 0 rgba(30,120,255,0.13);
+      transition: background 0.18s, box-shadow 0.22s;
+      letter-spacing: 0.4px;
     }
     .login-form button:hover {
-      background: #444;
+      background: linear-gradient(90deg,#0048f8 0%,#1a8cff 100%);
+      box-shadow: 0 6px 32px 0 rgba(30,120,255,0.18);
     }
-    .divider {
-      margin: 16px 0;
-      color: #aaa;
-      font-size: 0.9rem;
+    /* Google button styling */
+    .google-btn {
+      width: 100%;
       display: flex;
       align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.88);
+      border-radius: 13px;
+      border: 1px solid rgba(180,220,255,0.32);
+      box-shadow: 0 2px 12px 0 rgba(30,120,255,0.08);
+      font-weight: 600;
+      font-size: 1.08rem;
+      color: #2c3a4d;
+      padding: 12px 0;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: background 0.22s, box-shadow 0.22s;
+    }
+    .google-btn:hover {
+      background: #e6f2ff;
+      box-shadow: 0 4px 20px 0 rgba(30,120,255,0.11);
+    }
+    .google-btn img {
+      width: 28px;
+      height: 28px;
+      background: none;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+    .divider {
+      margin: 13px 0;
+      color: #aaa;
+      font-size: 0.92rem;
+      display: flex;
+      align-items: center;
+      opacity: 0.6;
+      font-weight: 500;
     }
     .divider:before,
     .divider:after {
       content: "";
       flex: 1;
-      height: 1px;
-      background: #eee;
+      height: 1.3px;
+      background: linear-gradient(90deg,#e6f2ff 0%,#ffffff 100%);
       margin: 0 8px;
-    }
-    .social-login {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 8px;
-    }
-    .social-btn {
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: box-shadow 0.2s;
-    }
-    .social-btn:hover {
-      box-shadow: 0 2px 8px #ccc;
+      border-radius: 1px;
     }
     .brand {
       position: absolute;
-      top: 22px;
-      left: 32px;
-      font-weight: 600;
-      letter-spacing: 1px;
+      top: 28px;
+      left: 42px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
       display: flex;
       align-items: center;
+      z-index: 5;
+      color: #fff;
+      font-size: 1.15rem;
+      text-shadow: 0 2px 12px rgba(30,120,255,0.12);
+      opacity: 0.93;
+      background: rgba(30,120,255,0.10);
+      padding: 6px 16px 6px 8px;
+      border-radius: 16px;
+      backdrop-filter: blur(7px);
     }
     .brand-logo {
-      width: 24px;
-      margin-right: 6px;
+      width: 28px;
+      margin-right: 8px;
+      filter: drop-shadow(0 1px 6px rgba(100,180,255,0.12));
+    }
+    @media (max-width: 600px) {
+      .login-glass {
+        max-width: 96vw;
+        padding: 30px 8vw 26px 8vw;
+      }
+      .brand { left: 15px; top: 14px; font-size: 1rem;}
     }
   </style>
 </head>
 <body>
+  <div class="background-overlay"></div>
   <div class="brand">
     <img src="https://img.icons8.com/ios-filled/50/000000/contacts.png" class="brand-logo" alt="Contact-X Logo"/>
     Contact-X
   </div>
-  <div class="login-container">
+  <div class="login-glass">
     <img src="https://img.icons8.com/ios/50/000000/login-rounded-right.png" class="logo" alt="Sign in"/>
     <div class="login-title">Sign in with email</div>
-    <div class="login-desc">Make a new doc to bring your words, data, and teams together. For free</div>
-    <form class="login-form">
+    <div class="login-desc">Make a new doc to bring your words, data, and teams together. For free.</div>
+    <form class="login-form" autocomplete="off">
       <input type="email" placeholder="Email" required />
       <input type="password" placeholder="Password" required />
       <a href="#" class="forgot">Forgot password?</a>
       <button type="submit">Get Started</button>
     </form>
+    <button class="google-btn" type="button">
+      <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google" />
+      Sign in with Google
+    </button>
     <div class="divider">Or sign in with</div>
-    <div class="social-login">
-      <div class="social-btn"><img src="https://img.icons8.com/color/24/000000/google-logo.png"/></div>
-      <div class="social-btn"><img src="https://img.icons8.com/ios-filled/24/000000/mac-os.png"/></div>
-      <div class="social-btn"><img src="https://img.icons8.com/ios-filled/24/000000/apple-logo.png"/></div>
+    <div class="social-login" style="display: flex; justify-content: center; gap: 16px; margin-bottom: 8px;">
+      <div class="social-btn" style="background:rgba(255,255,255,0.88);border:1px solid #e6f2ff;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+        <img src="https://img.icons8.com/ios-filled/24/000000/mac-os.png"/>
+      </div>
+      <div class="social-btn" style="background:rgba(255,255,255,0.88);border:1px solid #e6f2ff;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;">
+        <img src="https://img.icons8.com/ios-filled/24/000000/apple-logo.png"/>
+      </div>
     </div>
   </div>
   
   <!-- Firebase SDKs and Initialization -->
   <script type="module">
-    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
+    // Add other Firebase SDKs here if needed!
 
-    // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDmbLZknKwhTBNtWQpwhXzUTc-AdZ6KjmM",
       authDomain: "contactxextension.firebaseapp.com",
@@ -170,12 +240,10 @@
       measurementId: "G-FKK8GGSGWY"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
 
-    // You can add authentication or other Firebase logic below
+    // You can add Google Auth and other Firebase features below!
   </script>
 </body>
 </html>
-
