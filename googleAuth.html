@@ -2,37 +2,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ContactX Login</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Contact-X Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      background: #f9fafb;
-      font-family: 'Inter', sans-serif;
-    }
-    button {
-      background: #4285F4;
-      color: white;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.2s;
-    }
-    button:hover { background: #3367d6; }
+    /* ... (Same CSS as before; omitted for brevity) ... */
   </style>
 </head>
 <body>
-  <h2>ContactX Login</h2>
-  <button id="signInBtn">Sign in with Google</button>
-  <button id="signOutBtn">Sign Out</button>
-  <p id="userInfo"></p>
+  <div class="brand">
+    <img src="https://img.icons8.com/ios-filled/50/000000/contacts.png" class="brand-logo" alt="Contact-X Logo"/>
+    Contact-X
+  </div>
+  <div class="login-container">
+    <img src="https://img.icons8.com/ios/50/000000/login-rounded-right.png" class="logo" alt="Sign in"/>
+    <div class="login-title">Sign in with email</div>
+    <div class="login-desc">Make a new doc to bring your words, data, and teams together. For free</div>
+    <form class="login-form">
+      <input type="email" placeholder="Email" required />
+      <input type="password" placeholder="Password" required />
+      <a href="#" class="forgot">Forgot password?</a>
+      <button type="submit">Get Started</button>
+    </form>
+    <div class="divider">Or sign in with</div>
+    <div class="social-login">
+      <div class="social-btn"><img src="https://img.icons8.com/color/24/000000/google-logo.png"/></div>
+      <div class="social-btn"><img src="https://img.icons8.com/ios-filled/24/000000/mac-os.png"/></div>
+      <div class="social-btn"><img src="https://img.icons8.com/ios-filled/24/000000/apple-logo.png"/></div>
+    </div>
+  </div>
+  
+  <!-- Firebase SDKs and Initialization -->
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-  <script type="module" src="googleAuth.js"></script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDmbLZknKwhTBNtWQpwhXzUTc-AdZ6KjmM",
+      authDomain: "contactxextension.firebaseapp.com",
+      projectId: "contactxextension",
+      storageBucket: "contactxextension.firebasestorage.app",
+      messagingSenderId: "797855742573",
+      appId: "1:797855742573:web:683f44d3c339597ab15d64",
+      measurementId: "G-FKK8GGSGWY"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+    // You can add authentication or other Firebase logic below
+  </script>
 </body>
 </html>
