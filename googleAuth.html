@@ -7,6 +7,125 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     /* ... (Same CSS as before; omitted for brevity) ... */
+     body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      background: rgba(255,255,255,0.90);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      padding: 40px 36px;
+      max-width: 350px;
+      width: 100%;
+      text-align: center;
+      backdrop-filter: blur(6px);
+    }
+    .logo {
+      width: 40px;
+      margin-bottom: 16px;
+    }
+    .login-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .login-desc {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 24px;
+    }
+    .login-form input {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .login-form input:focus {
+      border-color: #1a73e8;
+      outline: none;
+    }
+    .login-form .forgot {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+      color: #1a73e8;
+      text-align: right;
+      text-decoration: none;
+    }
+    .login-form button {
+      width: 100%;
+      padding: 10px 0;
+      border: none;
+      border-radius: 6px;
+      background: #222;
+      color: #fff;
+      font-weight: 600;
+      font-size: 1.05rem;
+      cursor: pointer;
+      margin-bottom: 14px;
+      transition: background 0.2s;
+    }
+    .login-form button:hover {
+      background: #444;
+    }
+    .divider {
+      margin: 16px 0;
+      color: #aaa;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+    }
+    .divider:before,
+    .divider:after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: #eee;
+      margin: 0 8px;
+    }
+    .social-login {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .social-btn {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+    }
+    .social-btn:hover {
+      box-shadow: 0 2px 8px #ccc;
+    }
+    .brand {
+      position: absolute;
+      top: 22px;
+      left: 32px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+    }
+    .brand-logo {
+      width: 24px;
+      margin-right: 6px;
+    }
   </style>
 </head>
 <body>
@@ -59,3 +178,4 @@
   </script>
 </body>
 </html>
+
