@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContactX Login</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: #f9fafb;
+      font-family: 'Inter', sans-serif;
+    }
+    button {
+      background: #4285F4;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.2s;
+    }
+    button:hover { background: #3367d6; }
+  </style>
+</head>
+<body>
+  <h2>ContactX Login</h2>
+  <button id="signInBtn">Sign in with Google</button>
+  <button id="signOutBtn">Sign Out</button>
+  <p id="userInfo"></p>
+
+  <script type="module" src="googleAuth.js"></script>
+</body>
+</html>
