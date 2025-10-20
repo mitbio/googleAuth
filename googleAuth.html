@@ -6,69 +6,59 @@
   <title>Contact-X Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      /* Colors */
-      --primary-blue: #0094ff;
-      --dark-blue: #0050c8;
-      --text-light: #eaf3ff;
-      --text-muted: #b9c6e2;
-      --overlay-dark: rgba(0,0,0,0.72);
-      --glass-bg-start: rgb(38 40 23 / 28%);
-      --glass-bg-end: rgba(0,0,0,0.9);
-      --glass-border-color: rgba(255,255,255,0.16);
-      --input-bg-default: rgba(255,255,255,0.15);
-      --input-bg-focus: rgba(255,255,255,0.28);
-      --input-border-default: rgba(200,220,255,0.12);
-      --button-hover-bg-start: var(--dark-blue);
-      --button-hover-bg-end: var(--primary-blue);
-      --google-btn-bg: rgba(255,255,255,0.13);
-      --google-btn-border: rgba(120,190,255,0.24);
-      --social-btn-bg: rgba(255,255,255,0.15);
-      --social-btn-border-default: #b9c6e2;
-      --social-btn-border-hover: var(--primary-blue);
-      --brand-bg: rgba(32,42,54,0.22);
-      --brand-border: #0050c822;
-
-      /* Spacing */
-      --spacing-xs: 8px;
-      --spacing-sm: 10px;
-      --spacing-md: 12px;
-      --spacing-lg: 14px;
-      --spacing-xl: 20px;
-      --spacing-xxl: 34px;
-
-      /* Border Radii */
-      --border-radius-sm: 13px;
-      --border-radius-md: 14px;
-      --border-radius-lg: 32px;
-      --border-radius-pill: 18px;
-      --border-radius-circle: 50%;
-
-      /* Font Sizes */
-      --font-size-sm: 0.97rem;
-      --font-size-md: 0.98rem;
-      --font-size-lg: 1.09rem;
-      --font-size-xl: 1.12rem;
-      --font-size-xxl: 1.14rem;
-      --font-size-title: 1.7rem;
-
-      /* Shadows */
-      --shadow-sm: 0 1px 2px rgba(44,51,70,0.10);
-      --shadow-md: 0 2px 10px rgba(80,130,210,0.08);
-      --shadow-lg: 0 4px 40px 0 rgb(48 48 24 / 27%), 0 1px 2px rgb(236 250 160 / 10%), 0 0 0 2.5px rgb(255 255 255 / 6%), 0 0 0 1.5px rgb(0 128 255 / 10%) inset;
-      --shadow-button: 0 6px 28px 0 rgba(0,128,255,0.13);
-      --shadow-button-hover: 0 8px 38px 0 rgba(0,128,255,0.18);
-      --shadow-input-focus: 0 2px 14px rgba(0,128,255,0.19);
-      --shadow-google-btn: 0 2px 14px 0 rgba(30,120,255,0.09);
-      --shadow-social-btn: 0 2px 10px rgba(0,128,255,0.09);
-      --shadow-social-btn-hover: 0 6px 18px 0 rgba(0,128,255,0.16);
-      --shadow-brand-logo: 0 1px 6px #0094ff33;
-      --shadow-brand: 0 2px 18px #0094ff33;
-      --shadow-brand-text: 0 2px 16px #0050c899, 0 1px 16px #0094ff44;
-      --shadow-logo: 0 2px 12px rgba(100,180,255,0.14);
-      --shadow-title: 0 2px 8px rgba(0,128,255,0.09);
-    }
-
+   :root {
+    --primary-blue: #0094ff;
+    --dark-blue: #0050c8;
+    --text-light: #eaf3ff;
+    --text-muted: #b9c6e2;
+    --overlay-dark: rgba(0,0,0,0.72);
+    --glass-bg-start: rgb(38 40 23 / 28%);
+    --glass-bg-end: rgba(0,0,0,0.9);
+    --glass-border-color: rgba(255,255,255,0.16);
+    --input-bg-default: rgba(255,255,255,0.15);
+    --input-bg-focus: rgba(255,255,255,0.28);
+    --input-border-default: rgba(200,220,255,0.12);
+    --button-hover-bg-start: #69780a;
+    --button-hover-bg-end: #69780a;
+    --google-btn-bg: rgba(255,255,255,0.13);
+    --google-btn-border: rgba(120,190,255,0.24);
+    --social-btn-bg: rgba(255,255,255,0.15);
+    --social-btn-border-default: #b9c6e2;
+    --social-btn-border-hover: #323436;
+    --brand-bg: rgba(32,42,54,0.22);
+    --brand-border: #0050c822;
+    --spacing-xs: 8px;
+    --spacing-sm: 10px;
+    --spacing-md: 12px;
+    --spacing-lg: 14px;
+    --spacing-xl: 20px;
+    --spacing-xxl: 34px;
+    --border-radius-sm: 13px;
+    --border-radius-md: 14px;
+    --border-radius-lg: 32px;
+    --border-radius-pill: 18px;
+    --border-radius-circle: 50%;
+    --font-size-sm: 0.97rem;
+    --font-size-md: 0.98rem;
+    --font-size-lg: 1.09rem;
+    --font-size-xl: 1.12rem;
+    --font-size-xxl: 1.14rem;
+    --font-size-title: 1.7rem;
+    --shadow-sm: 0 1px 2px rgba(44,51,70,0.10);
+    --shadow-md: 0 2px 10px rgba(80,130,210,0.08);
+    --shadow-lg: 0 4px 40px 0 rgb(48 48 24 / 27%), 0 1px 2px rgb(236 250 160 / 10%), 0 0 0 2.5px rgb(255 255 255 / 6%), 0 0 0 1.5px rgb(0 128 255 / 10%) inset;
+    --shadow-button: 0 6px 28px 0 rgb(158 171 37 / 13%);
+    --shadow-button-hover: 0 8px 38px 0 rgb(77 94 27 / 18%);
+    --shadow-input-focus: 0 2px 14px rgba(0,128,255,0.19);
+    --shadow-google-btn: 0 2px 14px 0 rgba(30,120,255,0.09);
+    --shadow-social-btn: 0 2px 10px rgba(0,128,255,0.09);
+    --shadow-social-btn-hover: 0 6px 18px 0 rgba(0,128,255,0.16);
+    --shadow-brand-logo: 0 1px 6px #0094ff33;
+    --shadow-brand: 0 2px 18px #0094ff33;
+    --shadow-brand-text: 0 2px 16px #0050c899, 0 1px 16px #0094ff44;
+    --shadow-logo: 0 2px 12px rgba(100,180,255,0.14);
+    --shadow-title: 0 2px 8px rgba(0,128,255,0.09);
+}
     body {
       display: flex;
       align-items: center;
@@ -110,23 +100,22 @@
       to   { opacity: 0.87; backdrop-filter: blur(2px);}
     }
 
-    .login-glass {
-        position: relative;
-        z-index: 2;
-        max-width: 420px;
+    .login-form button {
         width: 100%;
-        padding: 54px 44px 46px 44px;
-        text-align: center;
-        background: linear-gradient(120deg,var(--glass-bg-start) 0%,var(--glass-bg-end) 100%);
-        border: 2px solid var(--glass-border-color);
-        border-radius: var(--border-radius-lg);
-        box-shadow: var(--shadow-lg);
-        backdrop-filter: blur(18px) saturate(180%);
-        opacity: 0;
-        transition: box-shadow 0.3s cubic-bezier(0.23,1,0.32,1), transform 0.3s cubic-bezier(0.23,1,0.32,1);
-        animation: floatUp 1.2s cubic-bezier(0.23,1,0.32,1) 0.7s forwards;
-        will-change: transform, opacity, filter, box-shadow; /* Optimization hint */
+        padding: 13px 0;
+        margin-bottom: 22px;
+        border: none;
+        border-radius: var(--border-radius-md);
+        background: #000000;
+        box-shadow: var(--shadow-button);
+        color: #fff;
+        font-weight: 700;
+        font-size: var(--font-size-xxl);
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: background 0.18s, box-shadow 0.22s, transform 0.18s;
     }
+
 
     @keyframes floatUp {
       from { opacity: 0; transform: translateY(40px) scale(0.93);}
@@ -418,3 +407,4 @@
   </script>
 </body>
 </html>
+
