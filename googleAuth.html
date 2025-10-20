@@ -6,37 +6,105 @@
   <title>Contact-X Login</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      /* Colors */
+      --primary-blue: #0094ff;
+      --dark-blue: #0050c8;
+      --text-light: #eaf3ff;
+      --text-muted: #b9c6e2;
+      --overlay-dark: rgba(0,0,0,0.72);
+      --glass-bg-start: rgb(38 40 23 / 28%);
+      --glass-bg-end: rgba(0,0,0,0.9);
+      --glass-border-color: rgba(255,255,255,0.16);
+      --input-bg-default: rgba(255,255,255,0.15);
+      --input-bg-focus: rgba(255,255,255,0.28);
+      --input-border-default: rgba(200,220,255,0.12);
+      --button-hover-bg-start: var(--dark-blue);
+      --button-hover-bg-end: var(--primary-blue);
+      --google-btn-bg: rgba(255,255,255,0.13);
+      --google-btn-border: rgba(120,190,255,0.24);
+      --social-btn-bg: rgba(255,255,255,0.15);
+      --social-btn-border-default: #b9c6e2;
+      --social-btn-border-hover: var(--primary-blue);
+      --brand-bg: rgba(32,42,54,0.22);
+      --brand-border: #0050c822;
+
+      /* Spacing */
+      --spacing-xs: 8px;
+      --spacing-sm: 10px;
+      --spacing-md: 12px;
+      --spacing-lg: 14px;
+      --spacing-xl: 20px;
+      --spacing-xxl: 34px;
+
+      /* Border Radii */
+      --border-radius-sm: 13px;
+      --border-radius-md: 14px;
+      --border-radius-lg: 32px;
+      --border-radius-pill: 18px;
+      --border-radius-circle: 50%;
+
+      /* Font Sizes */
+      --font-size-sm: 0.97rem;
+      --font-size-md: 0.98rem;
+      --font-size-lg: 1.09rem;
+      --font-size-xl: 1.12rem;
+      --font-size-xxl: 1.14rem;
+      --font-size-title: 1.7rem;
+
+      /* Shadows */
+      --shadow-sm: 0 1px 2px rgba(44,51,70,0.10);
+      --shadow-md: 0 2px 10px rgba(80,130,210,0.08);
+      --shadow-lg: 0 4px 40px 0 rgb(48 48 24 / 27%), 0 1px 2px rgb(236 250 160 / 10%), 0 0 0 2.5px rgb(255 255 255 / 6%), 0 0 0 1.5px rgb(0 128 255 / 10%) inset;
+      --shadow-button: 0 6px 28px 0 rgba(0,128,255,0.13);
+      --shadow-button-hover: 0 8px 38px 0 rgba(0,128,255,0.18);
+      --shadow-input-focus: 0 2px 14px rgba(0,128,255,0.19);
+      --shadow-google-btn: 0 2px 14px 0 rgba(30,120,255,0.09);
+      --shadow-social-btn: 0 2px 10px rgba(0,128,255,0.09);
+      --shadow-social-btn-hover: 0 6px 18px 0 rgba(0,128,255,0.16);
+      --shadow-brand-logo: 0 1px 6px #0094ff33;
+      --shadow-brand: 0 2px 18px #0094ff33;
+      --shadow-brand-text: 0 2px 16px #0050c899, 0 1px 16px #0094ff44;
+      --shadow-logo: 0 2px 12px rgba(100,180,255,0.14);
+      --shadow-title: 0 2px 8px rgba(0,128,255,0.09);
+    }
+
     body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       min-height: 100vh;
       margin: 0;
       font-family: 'Inter', sans-serif;
       background: url('936e93ec-69c7-48c3-bbc7-f419bcc45ad1.png') center center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       position: relative;
       overflow: hidden;
-      transition: filter 1.2s cubic-bezier(0.23,1,0.32,1);
       filter: blur(14px);
+      transition: filter 1.2s cubic-bezier(0.23,1,0.32,1);
       animation: bgUnblur 1.4s cubic-bezier(0.23,1,0.32,1) 0.3s forwards;
+      will-change: filter; /* Optimization hint */
     }
+
     @keyframes bgUnblur {
       from { filter: blur(14px); }
       to { filter: blur(0); }
     }
+
     .background-overlay {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: radial-gradient(ellipse 120% 90% at 60% 40%, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.72) 100%);
         z-index: 1;
+        background: radial-gradient(ellipse 120% 90% at 60% 40%, rgba(0,0,0,0.6) 0%, var(--overlay-dark) 100%);
+        backdrop-filter: blur(0px) brightness(0.92);
         opacity: 0;
         animation: overlayFadeIn 1.1s cubic-bezier(0.23,1,0.32,1) 0.8s forwards;
         pointer-events: none;
-        backdrop-filter: blur(0px) brightness(0.92);
-}
+        will-change: opacity, backdrop-filter; /* Optimization hint */
+    }
+
     @keyframes overlayFadeIn {
       from { opacity: 0; backdrop-filter: blur(0px);}
       to   { opacity: 0.87; backdrop-filter: blur(2px);}
@@ -45,19 +113,21 @@
     .login-glass {
         position: relative;
         z-index: 2;
-        background: linear-gradient(120deg,rgb(38 40 23 / 28%) 0%,rgba(0,0,0,0.9) 100%);
-        border-radius: 32px;
-        box-shadow: 0 4px 40px 0 rgb(48 48 24 / 27%), 0 1px 2px rgb(236 250 160 / 10%), 0 0 0 2.5px rgb(255 255 255 / 6%), 0 0 0 1.5px rgb(0 128 255 / 10%) inset;
-        padding: 54px 44px 46px 44px;
         max-width: 420px;
         width: 100%;
+        padding: 54px 44px 46px 44px;
         text-align: center;
+        background: linear-gradient(120deg,var(--glass-bg-start) 0%,var(--glass-bg-end) 100%);
+        border: 2px solid var(--glass-border-color);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-lg);
         backdrop-filter: blur(18px) saturate(180%);
-        border: 2px solid rgba(255,255,255,0.16);
+        opacity: 0;
         transition: box-shadow 0.3s cubic-bezier(0.23,1,0.32,1), transform 0.3s cubic-bezier(0.23,1,0.32,1);
         animation: floatUp 1.2s cubic-bezier(0.23,1,0.32,1) 0.7s forwards;
-        opacity: 0;
-}
+        will-change: transform, opacity, filter, box-shadow; /* Optimization hint */
+    }
+
     @keyframes floatUp {
       from { opacity: 0; transform: translateY(40px) scale(0.93);}
       to { opacity: 1; transform: translateY(0px) scale(1);}
@@ -65,205 +135,225 @@
 
     .logo {
       width: 54px;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 2px 12px rgba(100,180,255,0.14));
+      margin-bottom: var(--spacing-xl);
+      filter: drop-shadow(var(--shadow-logo));
       opacity: 0.95;
     }
+
     .login-title {
-      font-size: 1.7rem;
+      font-size: var(--font-size-title);
       font-weight: 700;
       letter-spacing: 0.8px;
       margin-bottom: 11px;
-      background: linear-gradient(90deg,#0094ff 0%,#0050c8 100%);
+      background: linear-gradient(90deg,var(--primary-blue) 0%,var(--dark-blue) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       text-fill-color: transparent;
-      filter: drop-shadow(0 2px 8px rgba(0,128,255,0.09));
+      filter: drop-shadow(var(--shadow-title));
     }
+
     .login-desc {
-      font-size: 1.09rem;
-      color: #b9c6e2;
-      opacity: 0.87;
-      margin-bottom: 34px;
+      font-size: var(--font-size-lg);
       font-weight: 500;
-      text-shadow: 0 1px 2px rgba(44,51,70,0.10);
+      color: var(--text-muted);
+      opacity: 0.87;
+      margin-bottom: var(--spacing-xxl);
+      text-shadow: var(--shadow-sm);
     }
+
     .login-form {
-      margin-bottom: 14px;
-      margin-top: 8px;
+      margin-top: var(--spacing-xs);
+      margin-bottom: var(--spacing-lg);
     }
+
     .login-form input {
       width: 100%;
       padding: 13px 16px;
-      margin-bottom: 20px;
-      border: none;
-      border-radius: 13px;
-      background: rgba(255,255,255,0.15);
-      box-shadow: 0 2px 10px rgba(80,130,210,0.08);
-      font-size: 1.12rem;
+      margin-bottom: var(--spacing-xl);
+      border: 1.5px solid var(--input-border-default);
+      border-radius: var(--border-radius-sm);
+      background: var(--input-bg-default);
+      box-shadow: var(--shadow-md);
+      font-size: var(--font-size-xl);
       font-weight: 500;
-      color: #eaf3ff;
+      color: var(--text-light);
       outline: none;
-      transition: box-shadow 0.18s, background 0.18s;
-      border: 1.5px solid rgba(200,220,255,0.12);
+      transition: box-shadow 0.18s, background 0.18s, border-color 0.18s, color 0.18s;
     }
+
     .login-form input:focus {
-      background: rgba(255,255,255,0.28);
-      box-shadow: 0 2px 14px rgba(0,128,255,0.19);
-      border-color: #0094ff;
+      background: var(--input-bg-focus);
+      box-shadow: var(--shadow-input-focus);
+      border-color: var(--primary-blue);
       color: #fff;
     }
+
     .login-form .forgot {
       display: block;
-      font-size: 0.98rem;
-      margin-bottom: 13px;
-      color: #0094ff;
+      font-size: var(--font-size-md);
+      font-weight: 600;
+      color: var(--primary-blue);
       text-align: right;
       text-decoration: none;
-      transition: color 0.18s;
-      font-weight: 600;
+      margin-bottom: 13px; /* Keep this specific value for vertical rhythm */
       opacity: 0.79;
+      transition: color 0.18s, opacity 0.18s;
     }
+
     .login-form .forgot:hover {
-      color: #0050c8;
+      color: var(--dark-blue);
       opacity: 1;
     }
+
     .login-form button {
       width: 100%;
       padding: 13px 0;
+      margin-bottom: 22px; /* Keep this specific value for vertical rhythm */
       border: none;
-      border-radius: 14px;
-      background: linear-gradient(90deg,#0094ff 0%,#0050c8 100%);
+      border-radius: var(--border-radius-md);
+      background: linear-gradient(90deg,var(--primary-blue) 0%,var(--dark-blue) 100%);
+      box-shadow: var(--shadow-button);
       color: #fff;
       font-weight: 700;
-      font-size: 1.14rem;
-      cursor: pointer;
-      margin-bottom: 22px;
-      box-shadow: 0 6px 28px 0 rgba(0,128,255,0.13);
-      transition: background 0.18s, box-shadow 0.22s, transform 0.18s;
+      font-size: var(--font-size-xxl);
       letter-spacing: 0.5px;
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.22s, transform 0.18s;
     }
+
     .login-form button:hover {
-      background: linear-gradient(90deg,#0050c8 0%,#0094ff 100%);
-      box-shadow: 0 8px 38px 0 rgba(0,128,255,0.18);
+      background: linear-gradient(90deg,var(--button-hover-bg-start) 0%,var(--button-hover-bg-end) 100%);
+      box-shadow: var(--shadow-button-hover);
       transform: scale(1.02);
     }
-    /* Google button styling */
+
     .google-btn {
-      width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      background: rgba(255,255,255,0.13);
-      border-radius: 13px;
-      border: 1.5px solid rgba(120,190,255,0.24);
-      box-shadow: 0 2px 14px 0 rgba(30,120,255,0.09);
-      font-weight: 600;
-      font-size: 1.13rem;
-      color: #eaf3ff;
+      width: 100%;
       padding: 13px 0;
+      margin-bottom: var(--spacing-md);
+      gap: var(--spacing-md);
+      border: 1.5px solid var(--google-btn-border);
+      border-radius: var(--border-radius-sm);
+      background: var(--google-btn-bg);
+      box-shadow: var(--shadow-google-btn);
+      color: var(--text-light);
+      font-weight: 600;
+      font-size: 1.13rem; /* Specific font size */
       cursor: pointer;
-      margin-bottom: 12px;
-      transition: background 0.22s, box-shadow 0.22s, color 0.16s;
       backdrop-filter: blur(2px);
+      transition: background 0.22s, box-shadow 0.22s, color 0.16s;
     }
+
     .google-btn:hover {
-      background: #0074f7;
+      background: #0074f7; /* Specific blue for Google hover */
       color: #fff;
-      box-shadow: 0 6px 28px 0 rgba(0,128,255,0.13);
+      box-shadow: var(--shadow-button);
     }
+
     .google-btn img {
       width: 29px;
       height: 29px;
+      margin-right: 9px; /* Specific margin */
       background: none;
-      border-radius: 50%;
-      margin-right: 9px;
+      border-radius: var(--border-radius-circle);
       filter: drop-shadow(0 1px 5px #0094ff44);
     }
+
     .divider {
-      margin: 14px 0;
-      color: #b9c6e2;
-      font-size: 0.97rem;
       display: flex;
       align-items: center;
-      opacity: 0.68;
+      margin: var(--spacing-lg) 0;
+      color: var(--text-muted);
+      font-size: var(--font-size-sm);
       font-weight: 600;
+      opacity: 0.68;
     }
+
     .divider:before,
     .divider:after {
       content: "";
       flex: 1;
       height: 1.6px;
-      background: linear-gradient(90deg,#0050c8 0%,#fff 100%);
-      margin: 0 8px;
+      margin: 0 var(--spacing-xs);
+      background: linear-gradient(90deg,var(--dark-blue) 0%,#fff 100%);
       border-radius: 2px;
       opacity: 0.35;
     }
+
     .social-login {
       display: flex;
       justify-content: center;
-      gap: 19px;
-      margin-bottom: 10px;
-      margin-top: 2px;
+      gap: 19px; /* Specific gap */
+      margin-top: 2px; /* Specific margin */
+      margin-bottom: var(--spacing-sm);
     }
+
     .social-btn {
-      background:rgba(255,255,255,0.15);
-      border:1.5px solid #b9c6e2;
-      border-radius:50%;
-      width:44px;
-      height:44px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      transition: box-shadow 0.18s, background 0.18s, border 0.16s;
-      box-shadow: 0 2px 10px rgba(0,128,255,0.09);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--social-btn-bg);
+      border: 1.5px solid var(--social-btn-border-default);
+      border-radius: var(--border-radius-circle);
+      box-shadow: var(--shadow-social-btn);
       filter: drop-shadow(0 1px 5px #0094ff2a);
+      cursor: pointer;
+      transition: box-shadow 0.18s, background 0.18s, border 0.16s, transform 0.18s; /* Added transform */
     }
+
     .social-btn:hover {
-      background: #0094ff44;
-      border: 1.5px solid #0094ff;
-      box-shadow: 0 6px 18px 0 rgba(0,128,255,0.16);
+      background: #0094ff44; /* Specific color */
+      border: 1.5px solid var(--social-btn-border-hover);
+      box-shadow: var(--shadow-social-btn-hover);
+      transform: translateY(-2px); /* Added subtle lift */
     }
+
     .social-btn img {
       width: 28px;
       height: 28px;
       opacity: 0.8;
     }
+
     .brand {
       position: absolute;
-      top: 28px;
-      left: 42px;
-      font-weight: 700;
-      letter-spacing: 1.2px;
+      top: 28px; /* Specific value */
+      left: 42px; /* Specific value */
+      z-index: 5;
       display: flex;
       align-items: center;
-      z-index: 5;
+      padding: var(--spacing-xs) 18px var(--spacing-xs) var(--spacing-sm); /* Specific padding */
+      background: var(--brand-bg);
+      border: 1px solid var(--brand-border);
+      border-radius: var(--border-radius-pill);
+      box-shadow: var(--shadow-brand);
       color: #fff;
-      font-size: 1.18rem;
-      text-shadow: 0 2px 16px #0050c899, 0 1px 16px #0094ff44;
-      opacity: 0.97;
-      background: rgba(32,42,54,0.22);
-      padding: 8px 18px 8px 10px;
-      border-radius: 18px;
+      font-size: 1.18rem; /* Specific font size */
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-shadow: var(--shadow-brand-text);
+      opacity: 0; /* Starts hidden */
       backdrop-filter: blur(9px);
-      box-shadow: 0 2px 18px #0094ff33;
-      border: 1px solid #0050c822;
       transition: background 0.18s, box-shadow 0.18s;
-      animation: fadeBrand 1.2s cubic-bezier(0.23,1,0.32,1) 1.0s forwards;
-      opacity: 0;
+      animation: fadeBrand 1.2s cubic-bezier(0.23,1,0.32,1) 0.6s forwards; /* Adjusted delay */
     }
+
     @keyframes fadeBrand {
       from { opacity: 0; transform: translateY(-10px);}
       to { opacity: 1; transform: translateY(0);}
     }
+
     .brand-logo {
       width: 29px;
-      margin-right: 8px;
-      filter: drop-shadow(0 1px 6px #0094ff33);
+      margin-right: var(--spacing-xs);
+      filter: drop-shadow(var(--shadow-brand-logo));
     }
+
     @media (max-width: 600px) {
       .login-glass {
         max-width: 96vw;
@@ -282,25 +372,26 @@
   <div class="login-glass">
     <img src="https://img.icons8.com/ios/50/000000/login-rounded-right.png" class="logo" alt="Sign in"/>
     <div class="login-title">Sign in with email</div>
-    <div class="login-desc">Make a new doc to bring your words, data, and teams together. For free.</div>
+    <div class="login-desc">Make a new doc to bring your words, data, and teams together. at no cost.</div>
     <form class="login-form" autocomplete="off">
       <input type="email" placeholder="Email" required />
       <input type="password" placeholder="Password" required />
       <a href="#" class="forgot">Forgot password?</a>
       <button type="submit">Get Started</button>
     </form>
-    <button class="google-btn" type="button">
-      <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google" />
+    <button class="google-btn" type="button" aria-label="Sign in with Google">
+      <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google icon" />
       Sign in with Google
     </button>
     <div class="divider">Or sign in with</div>
     <div class="social-login">
-      <div class="social-btn">
-        <img src="https://img.icons8.com/ios-filled/28/ffffff/mac-os.png"/>
-      </div>
-      <div class="social-btn">
-        <img src="https://img.icons8.com/ios-filled/28/ffffff/apple-logo.png"/>
-      </div>
+      <button class="social-btn" type="button" aria-label="Sign in with Apple">
+        <img src="https://img.icons8.com/ios-filled/28/ffffff/apple-logo.png" alt="Apple logo"/>
+      </button>
+      <button class="social-btn" type="button" aria-label="Sign in with Facebook">
+        <!-- Assuming this is a placeholder for another social login like Facebook -->
+        <img src="https://img.icons8.com/ios-filled/28/ffffff/mac-os.png" alt="Another social login icon"/>
+      </button>
     </div>
   </div>
   
@@ -327,5 +418,3 @@
   </script>
 </body>
 </html>
-
-
